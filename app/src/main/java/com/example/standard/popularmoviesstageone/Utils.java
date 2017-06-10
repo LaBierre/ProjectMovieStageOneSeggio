@@ -177,10 +177,12 @@ public class Utils {
 
                 // Extract the value for the key "vote_avarage"
                 double rating;
+                String voteRating;
                 if (currentMovie.has(context.getResources().getString(R.string.utils_rating))) {
                     rating = currentMovie.getDouble(context.getResources().getString(R.string.utils_rating));
+                    voteRating = String.valueOf(rating);
                 } else {
-                    rating = 0;
+                    voteRating = "";
                 }
 
                 // Extract the value for the key "overview"
@@ -199,7 +201,7 @@ public class Utils {
                     date = "";
                 }
 
-                Movie movie = new Movie(poster, title, overview, date, rating);
+                Movie movie = new Movie(poster, title, overview, date, voteRating);
                 movies.add(movie);
             }
 

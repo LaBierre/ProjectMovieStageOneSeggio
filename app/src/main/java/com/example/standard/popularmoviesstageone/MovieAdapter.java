@@ -35,13 +35,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     public void clear() {
-        int size = this.movieItems.size();
-        if (size > 0) {
-            for (int i = 0; i < size; i++) {
-                movieItems.remove(0);
-            }
-            this.notifyItemRangeRemoved(0, size);
-        }
+        movieItems.clear();
+        notifyDataSetChanged();
     }
 
     public void add(List<Movie> movieItems) {
@@ -63,7 +58,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         String poster = context.getString(R.string.image_url_w185) + movieItem.getmPoster();
 
-        Picasso.with(context).load(poster).into(holder.imageView);
+        Picasso
+                .with(context)
+                .load(poster)
+                .into(holder.imageView);
     }
 
     @Override

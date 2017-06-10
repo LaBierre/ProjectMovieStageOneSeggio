@@ -22,6 +22,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.data;
+
 public class MovieActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Movie>>, MovieAdapter.MovieAdapterOnClickHandler {
 
     private int page;
@@ -57,7 +59,7 @@ public class MovieActivity extends AppCompatActivity implements LoaderManager.Lo
 
         progressBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        int numberOfColumns = 4;
+        int numberOfColumns = getResources().getInteger(R.integer.gallery_columns);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
 
@@ -189,14 +191,11 @@ public class MovieActivity extends AppCompatActivity implements LoaderManager.Lo
     */
     @Override
     public void onClick(String title, String posterImage, String overview, String rating, String date) {
+
+        Movie data = new Movie();
         Intent intent = new Intent(this, MovieDetailActivity.class);
 
-        intent.putExtra(IntentKeys.TITLE_KEY, title);
-        intent.putExtra(IntentKeys.IMAGE_KEY, posterImage);
-        intent.putExtra(IntentKeys.STORY_KEY, overview);
-        intent.putExtra(IntentKeys.RATING_KEY, rating);
-        intent.putExtra(IntentKeys.DATE_KEY, date);
-
+        intent.putExtra("data", data);
         startActivity(intent);
     }
 }

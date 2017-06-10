@@ -29,19 +29,17 @@ public class MovieDetailActivity extends AppCompatActivity {
         /*
         * Receive Data from MovieActivity and set them into Views of detail layout
         */
-        Bundle extras = getIntent().getExtras();
-        if (extras != null){
-            String title = extras.getString(IntentKeys.TITLE_KEY);
-            titleTextView.setText(title);
-            String posterImage = extras.getString(IntentKeys.IMAGE_KEY);
-            Picasso.with(this).load(posterImage).into(poster);
-            String overview = extras.getString(IntentKeys.STORY_KEY);
-            overviewTextView.setText(overview);
-            String rating = extras.getString(IntentKeys.RATING_KEY);
-            ratingTextView.setText(rating);
-            String date = extras.getString(IntentKeys.DATE_KEY);
-            dateTextView.setText(date);
-        }
+        Movie movie = getIntent().getParcelableExtra("data");
+
+        String posterImage = movie.getmPoster();
+        Picasso.with(this).load(posterImage).into(poster);
+        titleTextView.setText(movie.getmTitle());
+        overviewTextView.setText(movie.getmOverview());
+        dateTextView.setText(movie.getmDate());
+        ratingTextView.setText(movie.getmRating());
+
+
+        // don't know how to continue
     }
 
     @Override

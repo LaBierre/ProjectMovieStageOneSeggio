@@ -190,9 +190,8 @@ public class MovieActivity extends AppCompatActivity implements LoaderManager.Lo
     * Starts the detail activity with detail Informations of the clicked movie image
     */
     @Override
-    public void onClick(String title, String posterImage, String overview, String rating, String date) {
+    public void onClick(Movie data) {
 
-        Movie data = new Movie();
         Intent intent = new Intent(this, MovieDetailActivity.class);
 
         intent.putExtra("data", data);

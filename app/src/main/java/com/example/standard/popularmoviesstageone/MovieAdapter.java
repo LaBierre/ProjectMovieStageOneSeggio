@@ -73,8 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
      * The interface that receives onClick messages.
      */
     public interface MovieAdapterOnClickHandler {
-        void onClick(String title, String posterImage, String overview,
-                     String rating, String date);
+        void onClick(Movie data);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -96,7 +95,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             String rating = String.valueOf(movieItems.get(adapterPosition).getmRating());
             String date = movieItems.get(adapterPosition).getmDate();
 
-            mClickHandler.onClick(title, posterImage, overview, rating, date);
+            Movie data = new Movie(posterImage, title, overview, date, rating);
+
+            mClickHandler.onClick(data);
         }
     }
 }
